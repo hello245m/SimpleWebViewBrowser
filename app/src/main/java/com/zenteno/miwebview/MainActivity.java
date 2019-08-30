@@ -1,8 +1,10 @@
 package com.zenteno.miwebview;
 
 import android.app.Activity;
+import android.net.http.SslError;
 import android.os.Bundle;
 import android.view.View;
+import android.webkit.SslErrorHandler;
 import android.webkit.WebResourceRequest;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
@@ -19,10 +21,19 @@ public class MainActivity extends Activity {
         //hideSystemUI();
         myWebView = findViewById(R.id.webview);
         myWebView.setWebViewClient(new WebViewClient(){
+
+            //impide que el hacer click en los links, estos se abran en otro navegador
             @Override
             public boolean shouldOverrideUrlLoading(WebView view, WebResourceRequest request) {
                 //return super.shouldOverrideUrlLoading(view, request);
                 return false;
+            }
+
+            //ignora errores de certificado ssl
+            @Override
+            public void onReceivedSslError(WebView view, SslErrorHandler handler, SslError error) {
+                //super.onReceivedSslError(view, handler, error);
+                handler.proceed();
             }
         });
         WebSettings webSettings = myWebView.getSettings();
