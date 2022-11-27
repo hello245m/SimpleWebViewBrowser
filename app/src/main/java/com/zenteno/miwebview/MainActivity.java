@@ -11,6 +11,7 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.net.Uri;
 import android.content.Intent;
+import java.lang.String;
 
 public class MainActivity extends Activity {
 
@@ -26,14 +27,14 @@ public class MainActivity extends Activity {
 
             //impide que el hacer click en los links, estos se abran en otro navegador
             @Override
-            public boolean shouldOverrideUrlLoading(WebView view, WebResourceRequest request) {
-                  Uri uri = Uri.parse(request);
+            public boolean shouldOverrideUrlLoading(WebView view, String url) {
+                  Uri uri = Uri.parse(url);
                     if (uri.getScheme().equals("wtlogin")) {
-                        startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(request)));
+                        startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(url)));
                     } else {
-                        myWebView.loadUrl(request);
+                        myWebView.loadUrl(url);
                     }
-                    return super.shouldOverrideUrlLoading(view, request);
+                    return super.shouldOverrideUrlLoading(view, url);
 
             }
 
