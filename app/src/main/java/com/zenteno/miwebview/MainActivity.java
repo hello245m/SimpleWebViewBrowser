@@ -29,7 +29,7 @@ public class MainActivity extends Activity {
             @Override
             public boolean shouldOverrideUrlLoading(WebView view, String url) {
                   Uri uri = Uri.parse(url);
-                    if (uri.getScheme().equals("wtlogin")) {
+                    if (uri.getScheme().contains("wtlogin")) {
                         startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(url)));
                     } else {
                         myWebView.loadUrl(url);
