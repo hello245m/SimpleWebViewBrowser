@@ -66,7 +66,11 @@ public class MainActivity extends Activity {
                         | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
                         | View.SYSTEM_UI_FLAG_FULLSCREEN);
     }
-
+    protected void onNewIntent(Intent intent) {
+          super.onNewIntent(intent);
+          setIntent(intent);//must store the new intent unless getIntent() will return the old one
+          myWebView.loadUrl(intent.getData().toString());
+    }
     @Override
     public void onBackPressed() {
         //super.onBackPressed();
