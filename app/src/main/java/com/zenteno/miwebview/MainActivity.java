@@ -38,7 +38,7 @@ public class MainActivity extends Activity {
         });
         WebSettings webSettings = myWebView.getSettings();
         webSettings.setJavaScriptEnabled(true);
-        myWebView.loadUrl("https://google.com");
+        myWebView.loadUrl("https:/xiaobaizhan.com");
     }
 
     private void hideSystemUI() {
