@@ -9,6 +9,8 @@ import android.webkit.WebResourceRequest;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.net.Uri;
+import android.content.Intent;
 
 public class MainActivity extends Activity {
 
@@ -25,8 +27,14 @@ public class MainActivity extends Activity {
             //impide que el hacer click en los links, estos se abran en otro navegador
             @Override
             public boolean shouldOverrideUrlLoading(WebView view, WebResourceRequest request) {
-                //return super.shouldOverrideUrlLoading(view, request);
-                return false;
+                  Uri uri = Uri.parse(request);
+                    if (uri.getScheme().equals("wtlogin")) {
+                        startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(request)));
+                    } else {
+                        myWebView.loadUrl(request);
+                    }
+                    return super.shouldOverrideUrlLoading(view, request);
+
             }
 
             //ignora errores de certificado ssl
