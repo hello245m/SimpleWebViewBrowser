@@ -70,10 +70,6 @@ public class MainActivity extends Activity {
     protected void onNewIntent(Intent intent) {
         super.onNewIntent(intent);
         setIntent(intent);//must store the new intent unless getIntent() will return the old one
-        if (Intent.ACTION_VIEW.equals(intent.getAction()) && intent.getData() != null) { 
-          String url = intent.getData().toString();
-          myWebView.loadUrl(url);
-        }
     }
     @Override
     public void onBackPressed() {
